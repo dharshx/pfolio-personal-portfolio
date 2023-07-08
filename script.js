@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-
   // Reload website when logo is clicked
   const logo = document.querySelector(".logo");
 
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
       location.reload();
     });
   }
-  
+
   // Typewriter effect for the span element
   const texts = ["Dharshini Vasudevan", "A Result-driven Software Developer", "Your Next Best Hire!"];
   let currentTextIndex = 0;
@@ -78,4 +77,73 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Start the typewriter effect when the page is loaded
   type();
+
+// timeline functionality for experience section
+const timelineContainer = document.querySelector(".timeline-container");
+if (!timelineContainer) {
+  console.error("Timeline container not found!");
+  return;
+}
+
+const timelines = Array.from(timelineContainer.querySelectorAll(".timeline"));
+const scrollIndicators = Array.from(document.querySelectorAll(".scroll-indicator"));
+
+let currentTimelineIndex = 0;
+
+function updateTimeline() {
+  timelines.forEach((timeline, index) => {
+    if (index === currentTimelineIndex) {
+      timeline.classList.add("active");
+    } else {
+      timeline.classList.remove("active");
+    }
+  });
+
+  scrollIndicators.forEach((indicator, index) => {
+    if (index === currentTimelineIndex) {
+      indicator.classList.add("active");
+    } else {
+      indicator.classList.remove("active");
+    }
+  });
+}
+
+function scrollToNextTimeline() {
+  if (currentTimelineIndex < timelines.length - 1) {
+    currentTimelineIndex++;
+    const timelineWidth = timelineContainer.clientWidth;
+    timelineContainer.scrollTo({
+      left: currentTimelineIndex * timelineWidth,
+      behavior: "smooth",
+    });
+    updateTimeline();
+  }
+}
+
+function scrollToPrevTimeline() {
+  if (currentTimelineIndex > 0) {
+    currentTimelineIndex--;
+    const timelineWidth = timelineContainer.clientWidth;
+    timelineContainer.scrollTo({
+      left: currentTimelineIndex * timelineWidth,
+      behavior: "smooth",
+    });
+    updateTimeline();
+  }
+}
+
+scrollIndicators.forEach((indicator, index) => {
+  indicator.addEventListener("click", () => {
+    currentTimelineIndex = index;
+    const timelineWidth = timelineContainer.clientWidth;
+    timelineContainer.scrollTo({
+      left: currentTimelineIndex * timelineWidth,
+      behavior: "smooth",
+    });
+    updateTimeline();
+  });
 });
+
+updateTimeline();
+});
+
