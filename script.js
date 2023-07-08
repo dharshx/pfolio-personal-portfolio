@@ -31,9 +31,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (logo) {
     logo.addEventListener("click", () => {
-      location.reload();
+      location.reload(true); // Add true as an argument to force a full reload
     });
   }
+  
 
   // Typewriter effect for the span element
   const texts = ["Dharshini Vasudevan", "A Result-driven Software Developer", "Your Next Best Hire!"];
