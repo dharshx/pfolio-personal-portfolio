@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // Start the typewriter effect when the page is loaded
   type();
 
+
 });
 
-
+  
